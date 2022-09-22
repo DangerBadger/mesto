@@ -3,5 +3,11 @@
   background-color: rgba(84, 84, 84, .7);
   height: 1px; 
   width: 100%;
-  margin: 41px 0 0 0;
+  margin: 32.2px 0 0 0;
  }
+
+ @media screen and (max-width: 449px) {
+  .header__line {
+    margin-top: 23.5px;
+  }
+}
