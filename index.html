@@ -21,23 +21,89 @@
       <hr class="header__line"></hr>
     </header>
 
-    <section class="profile">
-      <div class="profile__info">
-        <img src="./images/kusto.jpg" alt="Фотография профиля" class="profile__avatar">
-        <div class="profile__text">
-          <h2 class="profile__name">Жак-Ив Кусто</h2>
-          <button type="button" class="profile__edit-button">
-            <img src="./images/edit.svg" alt="" class="profile__edit-img">
-          </button>
-          <p class="profile__job">Исследователь океана</p>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__info">
+          <img src="./images/kusto.jpg" alt="Фотография профиля" class="profile__avatar">
+          <div class="profile__text">
+            <h2 class="profile__name">Жак-Ив Кусто</h2>
+            <button type="button" class="profile__edit-button">
+              <img src="./images/edit.svg" alt="" class="profile__edit-img">
+            </button>
+            <p class="profile__job">Исследователь океана</p>
+          </div>
         </div>
-      </div>
-      <button type="button" class="profile__add-button">
-        <img src="./images/plus.svg" alt="" class="profile__add-img">
-      </button>
-    </section>
+        <button type="button" class="profile__add-button">
+          <img src="./images/plus.svg" alt="" class="profile__add-img">
+        </button>
+      </section>
+
+      <section aria-label="Интересные места" class="elements">
+        <ul class="elements__list">
+          <li class="elements__item">
+            <div class="elements__card">
+              <img src="./images/karachaevsk.jpg" alt="Развалины древнего храма в Карачаевске" class="elements__img">
+              <div class="elements__text-container">
+                <p class="elements__caption">Карачаевск</p>
+                <button class="elements__like-button"></button>
+              </div>
+            </div>
+          </li>
+          <li class="elements__item">
+            <div class="elements__card">
+              <img src="./images/elbrus.jpg" alt="Пейзаж с горой Эльбрус на горизонте" class="elements__img">
+              <div class="elements__text-container">
+                <p class="elements__caption">Гора Эльбрус</p>
+                <button class="elements__like-button"></button>
+              </div>
+            </div>
+          </li>
+          <li class="elements__item">
+            <div class="elements__card">
+              <img src="./images/dombai.jpg" alt="Хвойный лес и заснеженные горные пики Домбая" class="elements__img">
+              <div class="elements__text-container">
+                <p class="elements__caption">Домбай</p>
+                <button class="elements__like-button"></button>
+              </div>
+            </div>
+          </li>
+          <li class="elements__item">
+            <div class="elements__card">
+              <img src="./images/argidjack.jpg" alt="Вид с заснеженной вершины горы Аргыджек" class="elements__img">
+              <div class="elements__text-container">
+                <p class="elements__caption">Аргыджек</p>
+                <button class="elements__like-button"></button>
+              </div>
+            </div>
+          </li>
+          <li class="elements__item">
+            <div class="elements__card">
+              <img src="./images/ergaki.jpg" alt="" class="elements__img">
+              <div class="elements__text-container">
+                <p class="elements__caption">Ергаки</p>
+                <button class="elements__like-button"></button>
+              </div>
+            </div>
+          </li>
+          <li class="elements__item">
+            <div class="elements__card">
+              <img src="./images/mana.jpg" alt="Вид на Манскую петлю с высоты гор" class="elements__img">
+              <div class="elements__text-container">
+                <p class="elements__caption">Красноярский край</p>
+                <button class="elements__like-button"></button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
 
   </div>
+  <spript src="./script/script.js"></spript>
 </body>
 
 </html>
