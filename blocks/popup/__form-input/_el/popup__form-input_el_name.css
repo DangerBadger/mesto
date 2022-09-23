@@ -1,0 +1,9 @@
+.popup__form-input_el_name {
+  margin-top: 48px;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__form-input_el_name {
+    margin-top: 75px;
+  }
+}

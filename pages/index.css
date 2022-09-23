@@ -12,10 +12,8 @@
 @import url(../blocks/profile/__text/profile__text.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
-@import url(../blocks/profile/__edit-img/profile__edit-img.css);
 @import url(../blocks/profile/__job/profile__job.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
-@import url(../blocks/profile/__add-img/profile__add-img.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__list/elements__list.css);
 @import url(../blocks/elements/__item/elements__item.css);
@@ -27,5 +25,14 @@
 @import url(../blocks/elements/__like-button/_active/elements__like-button_active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
-
-/* Проверить pixelperfect, разнести по папкам, смёрджить. */
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__form-container/popup__form-container.css);
+@import url(../blocks/close-btn/close-btn.css);
+@import url(../blocks/popup/__form-header/popup__form-header.css);
+@import url(../blocks/popup/__form-fieldset/popup__form-fieldset.css);
+@import url(../blocks/popup/__form-input/popup__form-input.css);
+@import url(../blocks/popup/__form-input/_el/popup__form-input_el_name.css);
+@import url(../blocks/popup/__form-input/_el/popup__form-input_el_job.css);
+@import url(../blocks/popup/__save-btn/popup__save-btn.css);

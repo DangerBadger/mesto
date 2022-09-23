@@ -1,15 +1,18 @@
 .profile__edit-button {
   width: 24px;
   height: 24px;
-  background-color: #000;
+  background: transparent;
+  background-image: url(../../../images/edit-img.png);
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-position: center;
+  outline: none;
+  box-shadow: none;
   margin: 0 0 9px 0;
   padding: 0;
   border: 1px solid #fff;
   grid-area: edit-button;
   align-self: end;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: opacity 0.2s linear 0.05s;
 }
 

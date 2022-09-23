@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="Сервис о путешествиях">
-  <meta name="keywords" content="Жак-Ив, Кусто, Карачаевск, Mesto, Гора, Эльбрус, Домбай, Russia, Россия">
+  <meta name="keywords"
+    content="Карачаевск, Mesto, Гора, Эльбрус, Домбай, Russia, Россия, Ергаки, Аргыджек, Красноярский, Мана">
   <meta name="author" content="Чивчиев Кирилл">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
@@ -18,7 +19,8 @@
       <h1 class="header__title">
         <img src="./images/mesto-logo.svg" alt="Логотип Место, Росссия" class="header__logo">
       </h1>
-      <hr class="header__line"></hr>
+      <hr class="header__line">
+      </hr>
     </header>
 
     <main class="content">
@@ -27,15 +29,11 @@
           <img src="./images/kusto.jpg" alt="Фотография профиля" class="profile__avatar">
           <div class="profile__text">
             <h2 class="profile__name">Жак-Ив Кусто</h2>
-            <button type="button" class="profile__edit-button">
-              <img src="./images/edit.svg" alt="" class="profile__edit-img">
-            </button>
+            <button type="button" class="profile__edit-button"></button>
             <p class="profile__job">Исследователь океана</p>
           </div>
         </div>
-        <button type="button" class="profile__add-button">
-          <img src="./images/plus.svg" alt="" class="profile__add-img">
-        </button>
+        <button type="button" class="profile__add-button"></button>
       </section>
 
       <section aria-label="Интересные места" class="elements">
@@ -78,7 +76,7 @@
           </li>
           <li class="elements__item">
             <div class="elements__card">
-              <img src="./images/ergaki.jpg" alt="" class="elements__img">
+              <img src="./images/ergaki.jpg" alt="Панорама гор заповедника Ергаки" class="elements__img">
               <div class="elements__text-container">
                 <p class="elements__caption">Ергаки</p>
                 <button class="elements__like-button"></button>
@@ -102,8 +100,22 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
+    <section class="popup">
+      <form action="" class="popup__form">
+        <div class="popup__form-container">
+          <button type="button" class="close-btn"></button>
+          <h2 class="popup__form-header">Редактировать профиль</h2>
+          <fieldset class="popup__form-fieldset">
+            <input type="text" required class="popup__form-input popup__form-input_el_name">
+            <input type="text" required class="popup__form-input popup__form-input_el_job">
+          </fieldset>
+          <button type="submit" class="popup__save-btn">Сохранить</button>
+        </div>
+      </form>
+    </section>
+
   </div>
-  <spript src="./script/script.js"></spript>
+  <script type="text/javascript" src="./script/index.js"></script>
 </body>
 
 </html>
