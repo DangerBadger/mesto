@@ -13,107 +13,110 @@
 </head>
 
 <body class="root">
-  <div class="page">
 
+  <div class="header-container">
     <header class="header">
-      <h1 class="header__title">
+      <a href="./index.html" class="header__brand">
         <img src="./images/mesto-logo.png" alt="Логотип Место, Росссия" class="header__logo">
-      </h1>
+      </a>
       <hr class="header__line">
     </header>
-
-    <main class="content">
-      <section class="profile">
-        <div class="profile__info">
-          <img src="./images/kusto.jpg" alt="Фотография профиля" class="profile__avatar">
-          <div class="profile__text">
-            <h2 class="profile__name">Жак-Ив Кусто</h2>
-            <button type="button" class="profile__edit-button"></button>
-            <p class="profile__job">Исследователь океана</p>
-          </div>
-        </div>
-        <button type="button" class="profile__add-button"></button>
-      </section>
-
-      <section aria-label="Интересные места" class="elements">
-        <ul class="elements__list">
-          <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/karachaevsk.jpg" alt="Развалины древнего храма в Карачаевске" class="elements__img">
-              <div class="elements__text-container">
-                <p class="elements__caption">Карачаевск</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/elbrus.jpg" alt="Пейзаж с горой Эльбрус на горизонте" class="elements__img">
-              <div class="elements__text-container">
-                <p class="elements__caption">Гора Эльбрус</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/dombai.jpg" alt="Хвойный лес и заснеженные горные пики Домбая" class="elements__img">
-              <div class="elements__text-container">
-                <p class="elements__caption">Домбай</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/argidjack.jpg" alt="Вид с заснеженной вершины горы Аргыджек" class="elements__img">
-              <div class="elements__text-container">
-                <p class="elements__caption">Аргыджек</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/ergaki.jpg" alt="Панорама гор заповедника Ергаки" class="elements__img">
-              <div class="elements__text-container">
-                <p class="elements__caption">Ергаки</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/mana.jpg" alt="Вид на Манскую петлю с высоты гор" class="elements__img">
-              <div class="elements__text-container">
-                <p class="elements__caption">Красноярский край</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-    </footer>
-
-    <section class="popup">
-      <form class="popup__form">
-        <div class="popup__form-container">
-          <button type="button" class="close-btn"></button>
-          <h2 class="popup__form-header">Редактировать профиль</h2>
-          <fieldset class="popup__form-fieldset">
-            <input type="text" required class="popup__form-input popup__form-input_el_name">
-            <input type="text" required class="popup__form-input popup__form-input_el_job">
-          </fieldset>
-          <button type="submit" class="popup__save-btn">Сохранить</button>
-        </div>
-      </form>
-    </section>
-
   </div>
+
+    <div class="page-main">
+      <main class="content">
+        <section class="profile">
+          <div class="profile__info">
+            <img src="./images/kusto.jpg" alt="Фотография профиля" class="profile__avatar">
+            <div class="profile__text">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button type="button" class="profile__edit-button"></button>
+              <p class="profile__job">Исследователь океана</p>
+            </div>
+          </div>
+          <button type="button" class="profile__add-button"></button>
+        </section>
+
+        <section aria-label="Интересные места" class="elements">
+          <ul class="elements__list">
+            <li class="elements__item">
+              <div class="elements__card">
+                <img src="./images/karachaevsk.jpg" alt="Развалины древнего храма в Карачаевске" class="elements__img">
+                <div class="elements__text-container">
+                  <p class="elements__caption">Карачаевск</p>
+                  <button class="elements__like-button"></button>
+                </div>
+              </div>
+            </li>
+            <li class="elements__item">
+              <div class="elements__card">
+                <img src="./images/elbrus.jpg" alt="Пейзаж с горой Эльбрус на горизонте" class="elements__img">
+                <div class="elements__text-container">
+                  <p class="elements__caption">Гора Эльбрус</p>
+                  <button class="elements__like-button"></button>
+                </div>
+              </div>
+            </li>
+            <li class="elements__item">
+              <div class="elements__card">
+                <img src="./images/dombai.jpg" alt="Хвойный лес и заснеженные горные пики Домбая" class="elements__img">
+                <div class="elements__text-container">
+                  <p class="elements__caption">Домбай</p>
+                  <button class="elements__like-button"></button>
+                </div>
+              </div>
+            </li>
+            <li class="elements__item">
+              <div class="elements__card">
+                <img src="./images/argidjack.jpg" alt="Вид с заснеженной вершины горы Аргыджек" class="elements__img">
+                <div class="elements__text-container">
+                  <p class="elements__caption">Аргыджек</p>
+                  <button class="elements__like-button"></button>
+                </div>
+              </div>
+            </li>
+            <li class="elements__item">
+              <div class="elements__card">
+                <img src="./images/ergaki.jpg" alt="Панорама гор заповедника Ергаки" class="elements__img">
+                <div class="elements__text-container">
+                  <p class="elements__caption">Ергаки</p>
+                  <button class="elements__like-button"></button>
+                </div>
+              </div>
+            </li>
+            <li class="elements__item">
+              <div class="elements__card">
+                <img src="./images/mana.jpg" alt="Вид на Манскую петлю с высоты гор" class="elements__img">
+                <div class="elements__text-container">
+                  <p class="elements__caption">Красноярский край</p>
+                  <button class="elements__like-button"></button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+      </footer>
+
+      <div class="popup">
+        <form class="popup__form">
+          <div class="popup__form-container">
+            <button type="button" class="close-btn"></button>
+            <h2 class="popup__form-header">Редактировать профиль</h2>
+            <fieldset class="popup__form-fieldset">
+              <input type="text" required class="popup__form-input popup__form-input_el_name">
+              <input type="text" required class="popup__form-input popup__form-input_el_job">
+            </fieldset>
+            <button type="submit" class="popup__save-btn">Сохранить</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  
   <script src="./script/index.js"></script>
 </body>
 

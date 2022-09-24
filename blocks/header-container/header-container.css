@@ -1,28 +1,30 @@
-.page {
+.header-container {
   margin: 0 auto;
   max-width: 880px;
 }
 
 @media screen and (max-width: 1023px) {
-  .page {
+  .header-container {
     max-width: 850px;
   }
 }
 
 @media screen and (max-width: 949px) {
-  .page {
+  .header-container {
     max-width: 768px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .page {
+  .header-container {
     max-width: 450px;
+    min-width: 420px;
   }
 }
 
 @media screen and (max-width: 449px) {
-  .page {
-    max-width: 320px;
+  .header-container {
+    max-width: 430px;
+    min-width: 300px;
   }
 }
