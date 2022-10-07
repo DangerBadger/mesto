@@ -39,9 +39,10 @@
 
       <section aria-label="Интересные места" class="elements">
         <ul class="elements__list">
-          <li class="elements__item">
+          <!-- <li class="elements__item">
             <div class="elements__card">
               <img src="./images/karachaevsk.jpg" alt="Развалины древнего храма в Карачаевске" class="elements__img">
+              <button class="elements__delete-btn"></button>
               <div class="elements__text-container">
                 <p class="elements__caption">Карачаевск</p>
                 <button class="elements__like-button"></button>
@@ -51,6 +52,7 @@
           <li class="elements__item">
             <div class="elements__card">
               <img src="./images/elbrus.jpg" alt="Пейзаж с горой Эльбрус на горизонте" class="elements__img">
+              <button class="elements__delete-btn"></button>
               <div class="elements__text-container">
                 <p class="elements__caption">Гора Эльбрус</p>
                 <button class="elements__like-button"></button>
@@ -60,6 +62,7 @@
           <li class="elements__item">
             <div class="elements__card">
               <img src="./images/dombai.jpg" alt="Хвойный лес и заснеженные горные пики Домбая" class="elements__img">
+              <button class="elements__delete-btn"></button>
               <div class="elements__text-container">
                 <p class="elements__caption">Домбай</p>
                 <button class="elements__like-button"></button>
@@ -69,6 +72,7 @@
           <li class="elements__item">
             <div class="elements__card">
               <img src="./images/argidjack.jpg" alt="Вид с заснеженной вершины горы Аргыджек" class="elements__img">
+              <button class="elements__delete-btn"></button>
               <div class="elements__text-container">
                 <p class="elements__caption">Аргыджек</p>
                 <button class="elements__like-button"></button>
@@ -78,6 +82,7 @@
           <li class="elements__item">
             <div class="elements__card">
               <img src="./images/ergaki.jpg" alt="Панорама гор заповедника Ергаки" class="elements__img">
+              <button class="elements__delete-btn"></button>
               <div class="elements__text-container">
                 <p class="elements__caption">Ергаки</p>
                 <button class="elements__like-button"></button>
@@ -87,12 +92,13 @@
           <li class="elements__item">
             <div class="elements__card">
               <img src="./images/mana.jpg" alt="Вид на Манскую петлю с высоты гор" class="elements__img">
+              <button class="elements__delete-btn"></button>
               <div class="elements__text-container">
                 <p class="elements__caption">Красноярский край</p>
                 <button class="elements__like-button"></button>
               </div>
             </div>
-          </li>
+          </li> -->
         </ul>
       </section>
     </main>
@@ -107,8 +113,8 @@
           <button type="button" class="close-btn"></button>
           <h2 class="popup__form-header">Редактировать профиль</h2>
           <fieldset class="popup__form-fieldset">
-            <input type="text" required class="popup__form-input popup__form-input_el_name">
-            <input type="text" required class="popup__form-input popup__form-input_el_job">
+            <input type="text" required placeholder="Введите имя" class="popup__form-input popup__form-input_el_name">
+            <input type="text" required placeholder="Укажите профессию" class="popup__form-input popup__form-input_el_job">
           </fieldset>
           <button type="submit" class="popup__save-btn">Сохранить</button>
         </div>
@@ -116,8 +122,20 @@
     </div>
   </div>
 
+  <template class="template">
+    <li class="elements__item">
+      <div class="elements__card">
+        <img class="elements__img" alt="Фотография места">
+        <button class="elements__delete-btn"></button>
+        <div class="elements__text-container">
+          <p class="elements__caption"></p>
+          <button class="elements__like-button"></button>
+        </div>
+      </div>
+    </li>
+  </template>
 
-  <script src="./script/index.js"></script>
+<script src="./script/index.js"></script>  
 </body>
 
 </html>
