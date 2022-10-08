@@ -39,66 +39,6 @@
 
       <section aria-label="Интересные места" class="elements">
         <ul class="elements__list">
-          <!-- <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/karachaevsk.jpg" alt="Развалины древнего храма в Карачаевске" class="elements__img">
-              <button class="elements__delete-btn"></button>
-              <div class="elements__text-container">
-                <p class="elements__caption">Карачаевск</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/elbrus.jpg" alt="Пейзаж с горой Эльбрус на горизонте" class="elements__img">
-              <button class="elements__delete-btn"></button>
-              <div class="elements__text-container">
-                <p class="elements__caption">Гора Эльбрус</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/dombai.jpg" alt="Хвойный лес и заснеженные горные пики Домбая" class="elements__img">
-              <button class="elements__delete-btn"></button>
-              <div class="elements__text-container">
-                <p class="elements__caption">Домбай</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/argidjack.jpg" alt="Вид с заснеженной вершины горы Аргыджек" class="elements__img">
-              <button class="elements__delete-btn"></button>
-              <div class="elements__text-container">
-                <p class="elements__caption">Аргыджек</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/ergaki.jpg" alt="Панорама гор заповедника Ергаки" class="elements__img">
-              <button class="elements__delete-btn"></button>
-              <div class="elements__text-container">
-                <p class="elements__caption">Ергаки</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="elements__card">
-              <img src="./images/mana.jpg" alt="Вид на Манскую петлю с высоты гор" class="elements__img">
-              <button class="elements__delete-btn"></button>
-              <div class="elements__text-container">
-                <p class="elements__caption">Красноярский край</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </li> -->
         </ul>
       </section>
     </main>
@@ -107,8 +47,8 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
-      <form class="popup__form">
+    <div class="popup popup-profile">
+      <form class="popup__form" id="popupProfile">
         <div class="popup__form-container">
           <button type="button" class="close-btn"></button>
           <h2 class="popup__form-header">Редактировать профиль</h2>
@@ -121,6 +61,37 @@
       </form>
     </div>
   </div>
+
+  <div class="popup popup-card">
+    <form class="popup__form" id="popupCard">
+      <div class="popup__form-container">
+        <button type="button" class="close-btn"></button>
+        <h2 class="popup__form-header">Новое место</h2>
+        <fieldset class="popup__form-fieldset">
+          <input type="text" required placeholder="Название" class="popup__form-input popup__form-input_el_place">
+          <input type="text" required placeholder="Ссылка на картинку" class="popup__form-input popup__form-input_el_link">
+        </fieldset>
+        <button type="submit" class="popup__save-btn" id="createBtn">Создать</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <div class="popup popup-card">
+  <form class="popup__form" id="popupCard">
+    <div class="popupnew__form-container">
+      <button type="button" class="close-btn"></button>
+      <h2 class="popup__form-header">Новое место</h2>
+      <fieldset class="popup__form-fieldset">
+        <input type="text" required placeholder="Название" class="popup__form-input popup__form-input_el_place">
+        <input type="text" required placeholder="Ссылка на картинку" class="popup__form-input popup__form-input_el_link">
+      </fieldset>
+      <button type="submit" class="popup__save-btn" id="createBtn">Создать</button>
+    </div>
+  </form>
+</div>
+</div> -->
+
 
   <template class="template">
     <li class="elements__item">
@@ -135,6 +106,7 @@
     </li>
   </template>
 
+<script src="./script/cards.js" ></script>  
 <script src="./script/index.js"></script>  
 </body>
 

@@ -35,6 +35,6 @@
 @import url(../blocks/popup/__form-header/popup__form-header.css);
 @import url(../blocks/popup/__form-fieldset/popup__form-fieldset.css);
 @import url(../blocks/popup/__form-input/popup__form-input.css);
-@import url(../blocks/popup/__form-input/_el/popup__form-input_el_name.css);
-@import url(../blocks/popup/__form-input/_el/popup__form-input_el_job.css);
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
+
+/* Удалить модфикаторы инпутов! */

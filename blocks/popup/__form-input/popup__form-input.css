@@ -1,5 +1,5 @@
 .popup__form-input {
-  margin: 0;
+  margin: 27px 0 0;
   padding: 5px 0 5px 5px;
   box-sizing: border-box;
   font-weight: 400;
@@ -9,4 +9,15 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   outline: none;
+}
+
+.popup__form-input:first-of-type {
+  margin-top: 48px;
+}
+
+
+@media screen and (max-width: 767px) {
+  .popup__form-input:first-of-type {
+    margin-top: 75px;
+  }
 }
