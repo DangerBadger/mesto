@@ -88,7 +88,6 @@ const createCardNode = (name, link) => {
   return currentCard;
 };
 
-
 // Группируем все слушатели в одном методе
 
 const setListeners = (currentCard) => {
