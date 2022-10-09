@@ -47,14 +47,15 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <div class="popup popup-profile">
-      <form class="popup__form" id="popupProfile">
+    <div class="popup" id="popupProfile">
+      <form class="popup__form" id="popupFormProfile">
         <div class="popup__form-container">
           <button type="button" class="close-btn"></button>
           <h2 class="popup__form-header">Редактировать профиль</h2>
           <fieldset class="popup__form-fieldset">
             <input type="text" required placeholder="Введите имя" class="popup__form-input popup__form-input_el_name">
-            <input type="text" required placeholder="Укажите профессию" class="popup__form-input popup__form-input_el_job">
+            <input type="text" required placeholder="Укажите профессию"
+              class="popup__form-input popup__form-input_el_job">
           </fieldset>
           <button type="submit" class="popup__save-btn">Сохранить</button>
         </div>
@@ -62,41 +63,39 @@
     </div>
   </div>
 
-  <div class="popup popup-card">
-    <form class="popup__form" id="popupCard">
+  <div class="popup" id="popupCard">
+    <form class="popup__form" id="popupFormCard">
       <div class="popup__form-container">
         <button type="button" class="close-btn"></button>
         <h2 class="popup__form-header">Новое место</h2>
         <fieldset class="popup__form-fieldset">
           <input type="text" required placeholder="Название" class="popup__form-input popup__form-input_el_place">
-          <input type="text" required placeholder="Ссылка на картинку" class="popup__form-input popup__form-input_el_link">
+          <input type="url" required placeholder="Ссылка на картинку"
+            class="popup__form-input popup__form-input_el_link">
         </fieldset>
         <button type="submit" class="popup__save-btn" id="createBtn">Создать</button>
       </div>
     </form>
   </div>
-</div>
+  </div>
 
-<!-- <div class="popup popup-card">
-  <form class="popup__form" id="popupCard">
-    <div class="popupnew__form-container">
+  <div class="popup" id="popupImage">
+    <div class="popup__img-container">
       <button type="button" class="close-btn"></button>
-      <h2 class="popup__form-header">Новое место</h2>
-      <fieldset class="popup__form-fieldset">
-        <input type="text" required placeholder="Название" class="popup__form-input popup__form-input_el_place">
-        <input type="text" required placeholder="Ссылка на картинку" class="popup__form-input popup__form-input_el_link">
-      </fieldset>
-      <button type="submit" class="popup__save-btn" id="createBtn">Создать</button>
+      <figure class="popup__figure">
+        <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg"
+          alt="Фотография места" class="popup__figure-image">
+        <figcaption class="popup__figure-caption"></figcaption>
+      </figure>
     </div>
-  </form>
-</div>
-</div> -->
-
+  </div>
 
   <template class="template">
     <li class="elements__item">
       <div class="elements__card">
-        <img class="elements__img" alt="Фотография места">
+        <button class="elements__img-button">
+          <img class="elements__img" alt="Фотография места">
+        </button>
         <button class="elements__delete-btn"></button>
         <div class="elements__text-container">
           <p class="elements__caption"></p>
@@ -106,8 +105,8 @@
     </li>
   </template>
 
-<script src="./script/cards.js" ></script>  
-<script src="./script/index.js"></script>  
+  <script src="./script/cards.js"></script>
+  <script src="./script/index.js"></script>
 </body>
 
 </html>

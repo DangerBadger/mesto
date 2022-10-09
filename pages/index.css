@@ -19,6 +19,7 @@
 @import url(../blocks/elements/__list/elements__list.css);
 @import url(../blocks/elements/__item/elements__item.css);
 @import url(../blocks/elements/__card/elements__card.css);
+@import url(../blocks/elements/__img-button/elements__img-button.css);
 @import url(../blocks/elements/__img/elements__img.css);
 @import url(../blocks/elements/__delete-btn/elements__delete-btn.css);
 @import url(../blocks/elements/__text-container/elements__text-container.css);
@@ -29,6 +30,10 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__img-container/popup__img-container.css);
+@import url(../blocks/popup/__figure/popup__figure.css);
+@import url(../blocks/popup/__figure-image/popup__figure-image.css);
+@import url(../blocks/popup/__figure-caption/popup__figure-caption.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__form-container/popup__form-container.css);
 @import url(../blocks/close-btn/close-btn.css);
@@ -36,5 +41,3 @@
 @import url(../blocks/popup/__form-fieldset/popup__form-fieldset.css);
 @import url(../blocks/popup/__form-input/popup__form-input.css);
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
-
-/* Удалить модфикаторы инпутов! */
