@@ -77,14 +77,24 @@ const createCardNode = (name, link) => {
   // link
   const currentLink = currentCard.querySelector('.elements__img');
   currentLink.src = link;
-  // currentLink.setAttribute('src', link); - альтернативный вариант
-  // Обработка лайков
-  currentCard.querySelector('.elements__like-button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('elements__like-button_active');
-  });
+  // Добавление лайков
+  currentCard.querySelector('.elements__like-button').addEventListener('click', likeFunction);
+
+  const deleteButton = currentCard.querySelector('.elements__delete-btn');
+  deleteButton.addEventListener('click', handleDeleteCard);
   
   return currentCard;
 };
+
+// Функция обработки лайков
+const likeFunction = (evt) => {
+  evt.target.classList.toggle('elements__like-button_active');
+};
+
+const handleDeleteCard = (evt) => {
+  const currentEl = evt.target.closest('.elements__item');
+  currentEl.remove();
+}
 
 // Добавление карточки
 const handleAddCard = (evt) => {
@@ -95,5 +105,7 @@ const handleAddCard = (evt) => {
   linkInput.value = '';
   popupClose(popupCard);
 };
+
+
 
 render();
