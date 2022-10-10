@@ -29,7 +29,7 @@ const openPopup = (currentPopup) => {
 
 const openProfilePopup = () => {
   fillProfileFormInputs();
-  popupProfile.classList.add('popup_opened');
+  openPopup(popupProfile);
 };
 
 // Заполнение полей .popup-profile при открытии
@@ -58,7 +58,7 @@ const handleProfileFormSubmit = (evt) => {
 // Загрузка 6 карточек (карточки в отдельном файле)
 
 
-const renderinitialcards = () => {
+const renderInitialCards = () => {
   initialCards.forEach((card) => {
     const currentCard = createCardNode(card.name, card.link);
     // Отправка в template
@@ -146,4 +146,4 @@ imgPopupCloseButton.addEventListener('click', () => { closePopup(popupImage) });
 // Сабмит popupCard
 formCardElement.addEventListener('submit', handleAddCard); // - сабмит на форму
 
-renderinitialcards();
+renderInitialCards();
