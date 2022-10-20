@@ -29,7 +29,7 @@ const openPopup = (currentPopup) => {
 
 const openProfilePopup = () => {
   fillProfileFormInputs();
-  popupProfile.classList.add('popup_opened');
+  openPopup(popupProfile);
 };
 
 // Заполнение полей .popup-profile при открытии
@@ -46,6 +46,18 @@ const closePopup = (currentPopup) => {
   currentPopup.classList.remove('popup_opened');
 }
 
+// Закрытие popup на оверлее
+const closePopupByOverlay = () => {
+  const popupList = Array.from(document.querySelectorAll('.popup'));
+  popupList.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+      if (evt.target == evt.currentTarget) {
+        closePopup(evt.currentTarget);
+      }
+    });
+  });
+}
+
 // Функция сабмита popupProfile
 
 const handleProfileFormSubmit = (evt) => {
@@ -58,7 +70,7 @@ const handleProfileFormSubmit = (evt) => {
 // Загрузка 6 карточек (карточки в отдельном файле)
 
 
-const renderinitialcards = () => {
+const renderInitialCards = () => {
   initialCards.forEach((card) => {
     const currentCard = createCardNode(card.name, card.link);
     // Отправка в template
@@ -146,4 +158,5 @@ imgPopupCloseButton.addEventListener('click', () => { closePopup(popupImage) });
 // Сабмит popupCard
 formCardElement.addEventListener('submit', handleAddCard); // - сабмит на форму
 
-renderinitialcards();
+closePopupByOverlay();
+renderInitialCards();
