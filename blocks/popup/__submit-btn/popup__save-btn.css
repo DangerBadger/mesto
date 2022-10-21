@@ -1,4 +1,4 @@
-.popup__save-btn {
+.popup__submit-btn {
   background-color: rgb(0, 0, 0);
   color: #fff;
   border: none;
@@ -16,13 +16,19 @@
   transition: background-color 0.2s linear 0.05s;
 }
 
-.popup__save-btn:hover {
+.popup__submit-btn:hover {
   background-color: rgba(0, 0, 0, .8);
   cursor: pointer;
 }
 
+.popup__submit-btn_inactive {
+  color: #c4c4c4;
+  background-color: #fff;
+  border: 1px solid #c4c4c4;
+}
+
 @media screen and (max-width: 767px) {
-  .popup__save-btn {
+  .popup__submit-btn {
     margin: 45px 0 25px;
     width: 238px;
     min-height: 46px;
