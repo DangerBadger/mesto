@@ -39,22 +39,9 @@
 @import url(../blocks/close-btn/close-btn.css);
 @import url(../blocks/popup/__form-header/popup__form-header.css);
 @import url(../blocks/popup/__form-fieldset/popup__form-fieldset.css);
+@import url(../blocks/popup/__form-label/popup__form-label.css);
 @import url(../blocks/popup/__form-input/popup__form-input.css);
-@import url(../blocks/popup/__submit-btn/popup__save-btn.css);
-
-.popup__form-input-error {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
-  color: #ff0000;
-  display: none;
-  height: 24px;
-}
-
-.popup__form-input-error_active {
-  display: inline-block;
-}
-
-.popup__form-input_type_error {
-  border-bottom-color: #ff0000;
-}
+@import url(../blocks/popup/__form-input/_type/popup__form-input_type_error.css);
+@import url(../blocks/popup/__form-input-error/popup__form-input-error.css);
+@import url(../blocks/popup/__submit-btn/popup__submit-btn.css);
+@import url(../blocks/popup/__submit-btn/_inactive/popup__submit-btn_inactive.css);

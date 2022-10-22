@@ -20,86 +20,15 @@ const popupPictureLink = popupImage.querySelector('.popup__figure-image');
 const popupPictureCaption = popupImage.querySelector('.popup__figure-caption');
 const popupElement = document.querySelector('.popup');
 const submitButton = document.querySelector('.popup__submit-btn');
-
-// ************************************Валидация****************************************
-
-// Функция добавления класса с ошибкой
-const showInputError = (form, formInput, errorMessage) => {
-  const errorElement = form.querySelector(`#${formInput.id}-error`);
-  formInput.classList.add('popup__form-input_type_error');
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__form-input-error_active');
-};
-
-// Функция удаления класса с ошибкой
-const hideInputError = (form, formInput) => {
-  const errorElement = form.querySelector(`#${formInput.id}-error`);
-  formInput.classList.remove('popup__form-input_type_error');
-  errorElement.classList.remove('popup__form-input-error_active');
-  errorElement.textContent = '';
-};
-
-// Функция проверки валидности поля
-const isValid = (form, formInput) => {
-  if (!formInput.validity.valid) {
-    showInputError(form, formInput, formInput.validationMessage);
-  } else {
-    hideInputError(form, formInput);
-  }
-};
-
-// Вызов функции isValid на каждый ввод символа
-
-const setValidationEventListeners = (form) => {
-  // Находим все поля внутри формы и создаём их массив
-  const inputList = Array.from(form.querySelectorAll('.popup__form-input'));
-  const buttonElement = form.querySelector('.popup__submit-btn');
-
-  toggleButtonState(inputList, buttonElement);
-  
-  inputList.forEach((formInput) => {
-    formInput.addEventListener('input', () => {
-      isValid(form, formInput);
-
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  formList.forEach((form) => {
-    setValidationEventListeners(form);
-  });
-};
-
-const hasInvalidInput = (inputList) => {
-  return inputList.some((formInput) => {
-    return !formInput.validity.valid;
-  });
-};
-
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__submit-btn_inactive');
-    buttonElement.setAttribute('disabled', '');
-  } else {
-    buttonElement.classList.remove('popup__submit-btn_inactive');
-    buttonElement.removeAttribute('disabled');
-  }
-}
-
-// Делаем кнопки неактивными при открытии popup 
-const disableSubmitButton = () => {
-  const submitButtonList = Array.from(document.querySelectorAll('.popup__submit-btn'));
-  submitButtonList.forEach((button) => {
-    button.classList.add('popup__submit-btn_inactive');
-    button.setAttribute('disabled', '');
-  })
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-input',
+  submitButtonSelector: '.popup__submit-btn',
+  inactiveButtonClass: 'popup__submit-btn_inactive',
+  inputErrorClass: '.popup__form-input_type_error',
 };
 
 
-// *************************************************************************************
 
 // Функция установки слушателя закрытия popup на esc на весь документ
 const setKeyHandler = () => {
@@ -118,10 +47,19 @@ const clearErrors = (currentPopup) => {
   const inputList = Array.from(form.querySelectorAll('.popup__form-input'));
   if (!form.closest('.popup_opened')) {
     inputList.forEach((formInput) => {
-      hideInputError(form, formInput);
+      hideInputError(form, formInput, settings);
     })
   }
 }
+
+// Делаем кнопки неактивными при открытии popup 
+const disableSubmitButton = () => {
+  const submitButtonList = Array.from(document.querySelectorAll('.popup__submit-btn'));
+  submitButtonList.forEach((button) => {
+    button.classList.add('popup__submit-btn_inactive');
+    button.setAttribute('disabled', '');
+  })
+};
 
 // Открытие popupProfile с подстановкой значений и неактивным submit; вызов clearErrors
 const openProfilePopup = () => {
@@ -276,6 +214,6 @@ imgPopupCloseButton.addEventListener('click', () => { closePopup(popupImage) });
 formCardElement.addEventListener('submit', handleAddCard); // - сабмит на форму
 
 
-enableValidation();
+enableValidation(settings);
 closePopupByOverlay();
 renderInitialCards();
