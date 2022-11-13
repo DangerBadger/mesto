@@ -34,7 +34,6 @@ class FormValidator {
   };
   
   // Вызов функции isValid на каждый ввод символа
-
   enableValidation = () => {
     this._setValidationEventListeners();
   };
