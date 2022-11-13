@@ -1,5 +1,6 @@
 import {initialCards} from './cards.js';
 import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 
 const profilePopupOpenButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('#popupProfile');
@@ -11,19 +12,16 @@ const jobInput = formProfileElement.querySelector('#input-job');
 const formCardElement = popupCard.querySelector('#popupFormCard');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const cardsContainer = document.querySelector('.elements__list');
-const cardTemplate = document.querySelector('.template');
 const popupImage = document.querySelector('#popupImage');
 const popupPictureLink = popupImage.querySelector('.popup__figure-image');
 const popupPictureCaption = popupImage.querySelector('.popup__figure-caption');
-const submitButton = document.querySelector('.popup__submit-btn');
 const popupList = Array.from(document.querySelectorAll('.popup'));
 const settings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-input',
   submitButtonSelector: '.popup__submit-btn',
   inactiveButtonClass: 'popup__submit-btn_inactive',
-  inputErrorClass: '.popup__form-input_type_error',
+  inputErrorClass: 'popup__form-input_type_error',
 };
 
 // Функция установки слушателя закрытия popup на esc на весь документ
@@ -37,17 +35,6 @@ const openPopup = (currentPopup) => {
   setKeyHandler();
 };
 
-// Очистка ошибок при открытии popup
-const clearErrors = (currentPopup) => {
-  const form = currentPopup.querySelector('.popup__form');
-  const inputList = Array.from(form.querySelectorAll('.popup__form-input'));
-  if (!form.closest('.popup_opened')) {
-    inputList.forEach((formInput) => {
-      hideInputError(form, formInput, settings);
-    })
-  }
-}
-
 // Делаем кнопки неактивными при открытии popup 
 const disableSubmitButton = () => {
   const submitButtonList = Array.from(document.querySelectorAll('.popup__submit-btn'));
@@ -57,11 +44,11 @@ const disableSubmitButton = () => {
   })
 };
 
-// Открытие popupProfile с подстановкой значений и неактивным submit; вызов clearErrors
+// Открытие popupProfile с подстановкой значений и неактивным submit
 const openProfilePopup = () => {
   fillProfileFormInputs();
   disableSubmitButton(popupProfile);
-  clearErrors(popupProfile);
+  formProfileElement.reset();
   openPopup(popupProfile);
 };
 
@@ -71,15 +58,10 @@ const fillProfileFormInputs = () => {
   jobInput.value = profileJob.textContent;
 };
 
-// Очистка полей popupCard и вызов clearErrors
-const clearPopupCard = () => {
-  formCardElement.reset();
-  clearErrors(popupCard);
-}
-// Открытие popupCard с пустыми полями и неактивным submit
+// Открытие popupCard с пустыми полями и неактивным submit, Очистка полей popupCard
 const openPopupCard = () => {
   disableSubmitButton(popupCard);
-  clearPopupCard();
+  formCardElement.reset();
   openPopup(popupCard);
 }
 
@@ -131,7 +113,7 @@ const handleProfileFormSubmit = (evt) => {
   closePopup(popupProfile);
 };
 
-
+// Добавление новой карточки
 const handleAddCard = (evt) => {
   evt.preventDefault();
   const placeInput = formCardElement.querySelector('#input-place');
@@ -151,85 +133,15 @@ function handleOpenImagePopup(name, link) {
   openPopup(popupImage);
 };
 
-
-// Слушатель сабмита и доьавления popupCard
-formCardElement.addEventListener('submit', handleAddCard); // - сабмит на форму
-
+// Инициализация создания 6 карточек
 initialCards.forEach((item) => {
   const card = new Card(item, handleOpenImagePopup, '.template');
   const cardElement = card.generateCard();
   document.querySelector('.elements__list').append(cardElement);
 });
 
-// // Загрузка 6 карточек (карточки в отдельном файле)
-// const renderInitialCards = () => {
-//   initialCards.forEach((card) => {
-//     const currentCard = createCardNode(card.name, card.link);
-//     // Отправка в template
-//     cardsContainer.append(currentCard);
-//   });
-// };
-
-// const createCardNode = (name, link) => {
-//   // Глубокое копирование
-//   const currentCard = cardTemplate.content.cloneNode(true);
-//   // Заголовок
-//   const currentText = currentCard.querySelector('.elements__caption');
-//   currentText.textContent = name;
-//   // link
-//   const currentLink = currentCard.querySelector('.elements__img');
-//   currentLink.src = link;
-//   currentLink.alt = name;
-
-//   setCardEventListeners(currentCard);
-
-//   return currentCard;
-// };
-
-// // Функция обработки лайков
-// const handleCardLike = (evt) => {
-//   evt.target.classList.toggle('elements__like-button_active');
-// };
-
-// // Функция удаления карточки
-// const handleDeleteCard = (evt) => {
-//   const currentEl = evt.target.closest('.elements__item');
-//   currentEl.remove();
-// }
-
-// // Функция открытия и заполнения карточки
-// const handleOpenImagePopup = (evt) => {
-//   const currentEl = evt.target.closest('.elements__item');
-//   const openedCard = currentEl;
-//   const caption = openedCard.querySelector('.elements__caption').textContent;
-//   popupPictureCaption.textContent = caption;
-//   const link = openedCard.querySelector('.elements__img').src;
-//   popupPictureLink.src = link;
-//   popupPictureLink.alt = caption;
-//   openPopup(popupImage);
-// };
-
-// // Функция добавления карточки
-// const handleAddCard = (evt) => {
-//   evt.preventDefault();
-//   const card = createCardNode(placeInput.value, linkInput.value);
-//   cardsContainer.prepend(card);
-//   formCardElement.reset();
-//   closePopup(popupCard);
-// };
-
-// // Группируем слушатели в одном методе
-// const setCardEventListeners = (currentCard) => {
-//   // Добавление лайков в currentCard
-//   currentCard.querySelector('.elements__like-button').addEventListener('click', handleCardLike);
-//   // Удаление карточки в currentCard
-//   const deleteButton = currentCard.querySelector('.elements__delete-btn');
-//   deleteButton.addEventListener('click', handleDeleteCard);
-//   // Открытие карточки в currentCard происходит в handleOpenImagePopup
-//   const imgPopupOpenButton = currentCard.querySelector('.elements__img-button');
-//   // Заполнение карточки в CurrentCard
-//   imgPopupOpenButton.addEventListener('click', handleOpenImagePopup);
-// };
+// Слушатель сабмита и доьавления popupCard
+formCardElement.addEventListener('submit', handleAddCard); // - сабмит на форму
 
 // Слушатель сабмита popupProfile
 formProfileElement.addEventListener('submit', handleProfileFormSubmit);
@@ -241,7 +153,10 @@ cardPopupOpenButton.addEventListener('click', openPopupCard);
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
 
 
-enableValidation(settings);
+const cardValidation = new FormValidator(settings, formCardElement);
+const formValidation = new FormValidator(settings, formProfileElement);
+
+cardValidation.enableValidation();
+formValidation.enableValidation();
 closePopupByOverlay();
 closePopupByCross();
-// renderInitialCards();
