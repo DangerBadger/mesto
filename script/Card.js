@@ -12,19 +12,24 @@ class Card {
 
   generateCard() {
     this._card = this._getTemplate();
+    this._elementImg = this._card.querySelector('.elements__img');
     this._setEventListeners();
 
-    this._card.querySelector('.elements__img').src = this._data.link;
-    this._card.querySelector('.elements__img').alt = this._data.name;
+    this._elementImg.src = this._data.link;
+    this._elementImg.alt = this._data.name;
     this._card.querySelector('.elements__caption').textContent = this._data.name;
-    this._name = this._card.querySelector('.elements__caption').textContent;
-    this._link = this._card.querySelector('.elements__img').src;
+    this._cardData = {
+      name: this._data.name,
+      link: this._elementImg.src
+    };
 
     return this._card;
   }
 
   _setEventListeners() {
-    this._card.querySelector('.elements__like-button').addEventListener('click', () => {
+    this._elementLikeButton = this._card.querySelector('.elements__like-button');
+
+    this._elementLikeButton.addEventListener('click', () => {
       this._handleCardLike();
     });
     this._card.querySelector('.elements__delete-btn').addEventListener('click', () => {
@@ -32,21 +37,21 @@ class Card {
     });
 
     this._card.querySelector('.elements__img-button').addEventListener('click', () => {
-      this._handleOpenImagePopup();
+      this._handleImageClick();
     });
     
   }
 
   _handleCardLike() {
-    this._card.querySelector('.elements__like-button').classList.toggle('elements__like-button_active');
+    this._elementLikeButton.classList.toggle('elements__like-button_active');
   }
 
-  _handleDeleteCard = (evt) => {
-    this._card.closest('.elements__item').remove();
+  _handleDeleteCard = () => {
+    this._card.remove();  // Предложенный вами вариант с this._card = null почему-то не срабатывает
   }
 
-  _handleOpenImagePopup() {
-    this._openCard(this._name, this._link);
+  _handleImageClick() {
+    this._openCard(this._cardData);
   }
   
 }

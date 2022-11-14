@@ -10,13 +10,16 @@ const formProfileElement = popupProfile.querySelector('#popupFormProfile');
 const nameInput = formProfileElement.querySelector('#input-name');
 const jobInput = formProfileElement.querySelector('#input-job');
 const formCardElement = popupCard.querySelector('#popupFormCard');
+const placeInput = formCardElement.querySelector('#input-place');
+const linkInput = formCardElement.querySelector('#input-link');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const popupImage = document.querySelector('#popupImage');
 const popupPictureLink = popupImage.querySelector('.popup__figure-image');
 const popupPictureCaption = popupImage.querySelector('.popup__figure-caption');
 const popupList = Array.from(document.querySelectorAll('.popup'));
-const settings = {
+const cardElementsList = document.querySelector('.elements__list');
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-input',
   submitButtonSelector: '.popup__submit-btn',
@@ -35,20 +38,11 @@ const openPopup = (currentPopup) => {
   setKeyHandler();
 };
 
-// Делаем кнопки неактивными при открытии popup 
-const disableSubmitButton = () => {
-  const submitButtonList = Array.from(document.querySelectorAll('.popup__submit-btn'));
-  submitButtonList.forEach((button) => {
-    button.classList.add('popup__submit-btn_inactive');
-    button.setAttribute('disabled', '');
-  })
-};
-
 // Открытие popupProfile с подстановкой значений и неактивным submit
 const openProfilePopup = () => {
-  fillProfileFormInputs();
-  disableSubmitButton(popupProfile);
-  formProfileElement.reset();
+  formProfileElement.reset(); // На reset() навешаны слушатели очистки ошибок форм. Чтобы код работал исправно я теперь...
+  fillProfileFormInputs(); // просто вызываю его раньше чем заполнение полей значениями из разметки.
+  profileFormValidator.disableSubmitButton(popupProfile);
   openPopup(popupProfile);
 };
 
@@ -60,7 +54,7 @@ const fillProfileFormInputs = () => {
 
 // Открытие popupCard с пустыми полями и неактивным submit, Очистка полей popupCard
 const openPopupCard = () => {
-  disableSubmitButton(popupCard);
+  cardFormValidator.disableSubmitButton(popupCard);
   formCardElement.reset();
   openPopup(popupCard);
 }
@@ -77,10 +71,10 @@ const closePopup = (currentPopup) => {
 }
 
 // Закрытие popup на оверлее
-const closePopupByOverlay = () => {
+const bindPopupsOverlayClickHandlers = () => {
   popupList.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
-      if (evt.target == evt.currentTarget) {
+      if (evt.target === evt.currentTarget) {
         closePopup(popup)
       };
     });
@@ -88,7 +82,7 @@ const closePopupByOverlay = () => {
 };
 
 // Закрытие popup на крестике
-const closePopupByCross = () => {
+const bindPopupsCloseButtonsClickHandlers = () => {
   popupList.forEach((popup) => {
     popup.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('close-btn')) {
@@ -113,31 +107,34 @@ const handleProfileFormSubmit = (evt) => {
   closePopup(popupProfile);
 };
 
+// Создание карточек в Class Card
+const createCards = (obj, handler, template) => {
+  return new Card(obj, handler, template);
+};
+
 // Добавление новой карточки
 const handleAddCard = (evt) => {
   evt.preventDefault();
-  const placeInput = formCardElement.querySelector('#input-place');
-  const linkInput = formCardElement.querySelector('#input-link');
-  const card = new Card({name: placeInput.value, link: linkInput.value}, handleOpenImagePopup, '.template');
+  const card = createCards({name: placeInput.value, link: linkInput.value}, handleOpenImagePopup, '.template');
   const cardElement = card.generateCard();
-  document.querySelector('.elements__list').prepend(cardElement);
+  cardElementsList.prepend(cardElement);
   formCardElement.reset();
   closePopup(popupCard);
 }
 
 // Открытие картинки в Card
-function handleOpenImagePopup(name, link) {
-  popupPictureLink.src = link;
-  popupPictureLink.alt = name;
-  popupPictureCaption.textContent = name;
+function handleOpenImagePopup(data) {
+  popupPictureLink.src = data.link;
+  popupPictureLink.alt = data.name;
+  popupPictureCaption.textContent = data.name;
   openPopup(popupImage);
 };
 
 // Инициализация создания 6 карточек
 initialCards.forEach((item) => {
-  const card = new Card(item, handleOpenImagePopup, '.template');
+  const card = createCards(item, handleOpenImagePopup, '.template');
   const cardElement = card.generateCard();
-  document.querySelector('.elements__list').append(cardElement);
+  cardElementsList.append(cardElement);
 });
 
 // Слушатель сабмита и доьавления popupCard
@@ -153,10 +150,10 @@ cardPopupOpenButton.addEventListener('click', openPopupCard);
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
 
 
-const cardValidation = new FormValidator(settings, formCardElement);
-const formValidation = new FormValidator(settings, formProfileElement);
+const cardFormValidator = new FormValidator(validationConfig, formCardElement);
+const profileFormValidator = new FormValidator(validationConfig, formProfileElement);
 
-cardValidation.enableValidation();
-formValidation.enableValidation();
-closePopupByOverlay();
-closePopupByCross();
+cardFormValidator.enableValidation();
+profileFormValidator.enableValidation();
+bindPopupsOverlayClickHandlers();
+bindPopupsCloseButtonsClickHandlers();
