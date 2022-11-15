@@ -18,10 +18,6 @@ class Card {
     this._elementImg.src = this._data.link;
     this._elementImg.alt = this._data.name;
     this._card.querySelector('.elements__caption').textContent = this._data.name;
-    this._cardData = {
-      name: this._data.name,
-      link: this._elementImg.src
-    };
 
     return this._card;
   }
@@ -47,11 +43,12 @@ class Card {
   }
 
   _handleDeleteCard = () => {
-    this._card.remove();  // Предложенный вами вариант с this._card = null почему-то не срабатывает
+    this._card.remove();
+    this._card = null;
   }
 
   _handleImageClick() {
-    this._openCard(this._cardData);
+    this._openCard(this._data);
   }
   
 }

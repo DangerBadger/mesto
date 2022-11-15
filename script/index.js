@@ -18,7 +18,7 @@ const popupImage = document.querySelector('#popupImage');
 const popupPictureLink = popupImage.querySelector('.popup__figure-image');
 const popupPictureCaption = popupImage.querySelector('.popup__figure-caption');
 const popupList = Array.from(document.querySelectorAll('.popup'));
-const cardElementsList = document.querySelector('.elements__list');
+const cardsContainer = document.querySelector('.elements__list');
 const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-input',
@@ -38,10 +38,10 @@ const openPopup = (currentPopup) => {
   setKeyHandler();
 };
 
-// Открытие popupProfile с подстановкой значений и неактивным submit
+// Открытие popupProfile с подстановкой значений, неактивным submit и очисткой ошибок
 const openProfilePopup = () => {
-  formProfileElement.reset(); // На reset() навешаны слушатели очистки ошибок форм. Чтобы код работал исправно я теперь...
-  fillProfileFormInputs(); // просто вызываю его раньше чем заполнение полей значениями из разметки.
+  profileFormValidator.clearErrors();
+  fillProfileFormInputs();
   profileFormValidator.disableSubmitButton(popupProfile);
   openPopup(popupProfile);
 };
@@ -52,8 +52,9 @@ const fillProfileFormInputs = () => {
   jobInput.value = profileJob.textContent;
 };
 
-// Открытие popupCard с пустыми полями и неактивным submit, Очистка полей popupCard
+// Открытие popupCard с пустыми полями и неактивным submit, очистка полей, очистка ошибок
 const openPopupCard = () => {
+  cardFormValidator.clearErrors();
   cardFormValidator.disableSubmitButton(popupCard);
   formCardElement.reset();
   openPopup(popupCard);
@@ -108,16 +109,16 @@ const handleProfileFormSubmit = (evt) => {
 };
 
 // Создание карточек в Class Card
-const createCards = (obj, handler, template) => {
-  return new Card(obj, handler, template);
+const createCard = (cardData, cardClickHandler, template) => {
+  const card = new Card(cardData, cardClickHandler, template);
+  return card.generateCard();
 };
 
 // Добавление новой карточки
 const handleAddCard = (evt) => {
   evt.preventDefault();
-  const card = createCards({name: placeInput.value, link: linkInput.value}, handleOpenImagePopup, '.template');
-  const cardElement = card.generateCard();
-  cardElementsList.prepend(cardElement);
+  const card = createCard({name: placeInput.value, link: linkInput.value}, handleOpenImagePopup, '.template');
+  cardsContainer.prepend(card);
   formCardElement.reset();
   closePopup(popupCard);
 }
@@ -132,9 +133,8 @@ function handleOpenImagePopup(data) {
 
 // Инициализация создания 6 карточек
 initialCards.forEach((item) => {
-  const card = createCards(item, handleOpenImagePopup, '.template');
-  const cardElement = card.generateCard();
-  cardElementsList.append(cardElement);
+  const card = createCard(item, handleOpenImagePopup, '.template');
+  cardsContainer.append(card);
 });
 
 // Слушатель сабмита и доьавления popupCard
