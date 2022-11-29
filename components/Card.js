@@ -1,12 +1,15 @@
-class Card {
-  constructor(data, openCard, templateSelector) {
-    this._data = data;
+export default class Card {
+  constructor(settings, templateSelector) {
+    this._data = settings.data;
+    this._openCard = settings.handleOpenImagePopup;
     this._templateSelector = templateSelector;
-    this._openCard = openCard;
   }
 
   _getTemplate() {
-    const currentCard = document.querySelector(this._templateSelector).content.querySelector('.elements__item').cloneNode(true);
+    const currentCard = document
+      .querySelector(this._templateSelector)
+      .content.querySelector('.elements__item')
+      .cloneNode(true);
     return currentCard;
   }
 
@@ -50,7 +53,4 @@ class Card {
   _handleImageClick() {
     this._openCard(this._data);
   }
-  
-}
-
-export {Card};
+};

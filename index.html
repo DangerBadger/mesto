@@ -54,12 +54,12 @@
           <h2 class="popup__form-header">Редактировать профиль</h2>
           <fieldset class="popup__form-fieldset">
             <label class="popup__form-label">
-              <input type="text" minlength="2" maxlength="40" required placeholder="Введите имя" id="input-name"
+              <input type="text" minlength="2" maxlength="40" required placeholder="Введите имя" name="name" id="input-name"
                 name="input-name" class="popup__form-input">
               <span id="input-name-error" class="popup__form-input-error"></span>
             </label>
             <label class="popup__form-label">
-              <input type="text" minlength="2" maxlength="200" required placeholder="Укажите профессию" id="input-job"
+              <input type="text" minlength="2" maxlength="200" required placeholder="Укажите профессию" name="job" id="input-job"
                 name="input-job" class="popup__form-input">
               <span id="input-job-error" class="popup__form-input-error"></span>
             </label>
@@ -77,12 +77,12 @@
         <h2 class="popup__form-header">Новое место</h2>
         <fieldset class="popup__form-fieldset">
           <label class="popup__form-label">
-            <input type="text" minlength="2" maxlength="30" required placeholder="Название" id="input-place"
+            <input type="text" minlength="2" maxlength="30" required placeholder="Название" name="place" id="input-place"
               class="popup__form-input">
             <span id="input-place-error" class="popup__form-input-error"></span>
           </label>
           <label class="popup__form-label">
-            <input type="url" required placeholder="Ссылка на картинку" id="input-link" class="popup__form-input">
+            <input type="url" required placeholder="Ссылка на картинку" name="link" id="input-link" class="popup__form-input">
             <span id="input-link-error" class="popup__form-input-error"></span>
           </label>
         </fieldset>
@@ -117,7 +117,7 @@
     </li>
   </template>
 
-  <script type="module" src="./script/index.js"></script>
+  <script type="module" src="./pages/index.js"></script>
 </body>
 
 </html>
