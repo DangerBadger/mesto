@@ -1,4 +1,6 @@
-import FormValidator from '../components/FormValidator.js';
+import './pages/index.css';
+
+import FormValidator from './components/FormValidator.js';
 import {
   profilePopupOpenButton,
   popupProfile,
@@ -14,12 +16,12 @@ import {
   cardsContainer,
   validationConfig,
   initialCards
-} from '../utils/constants.js';
-import Section from '../components/Section.js';
-import Card from '../components/Card.js';
-import PopupWithImage from '../components/PopupWithImage.js';
-import PopupWithForm from '../components/PopupWithForm.js';
-import UserInfo from '../components/UserInfo.js';
+} from './utils/constants.js';
+import Section from './components/Section.js';
+import Card from './components/Card.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import UserInfo from './components/UserInfo.js';
 
 const cardFormValidator = new FormValidator(validationConfig, formCardElement);
 const profileFormValidator = new FormValidator(validationConfig, formProfileElement);

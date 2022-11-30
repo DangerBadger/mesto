@@ -8,7 +8,6 @@
     content="Mesto, Гора, Челябинская область, Архыз, Russia, Россия, Иваново, Холмогорский район, Камчатка, Байкал">
   <meta name="author" content="Чивчиев Кирилл">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 
@@ -17,7 +16,7 @@
   <div class="header-container">
     <header class="header">
       <a href="./index.html" class="header__brand">
-        <img src="./images/mesto-logo.png" alt="Логотип Место, Росссия" class="header__logo">
+        <img  src="<%=require('./images/mesto-logo.png')%>" alt="Логотип Место, Росссия" class="header__logo">
       </a>
       <hr class="header__line">
     </header>
@@ -27,7 +26,7 @@
     <main class="content">
       <section class="profile">
         <div class="profile__info">
-          <img src="./images/kusto.jpg" alt="Фотография профиля" class="profile__avatar">
+          <img  src="<%=require('./images/kusto.jpg')%>" alt="Фотография профиля" class="profile__avatar">
           <div class="profile__text">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" class="profile__edit-button"></button>
@@ -54,13 +53,13 @@
           <h2 class="popup__form-header">Редактировать профиль</h2>
           <fieldset class="popup__form-fieldset">
             <label class="popup__form-label">
-              <input type="text" minlength="2" maxlength="40" required placeholder="Введите имя" name="name" id="input-name"
-                name="input-name" class="popup__form-input">
+              <input type="text" minlength="2" maxlength="40" required placeholder="Введите имя" name="name"
+                id="input-name" name="input-name" class="popup__form-input">
               <span id="input-name-error" class="popup__form-input-error"></span>
             </label>
             <label class="popup__form-label">
-              <input type="text" minlength="2" maxlength="200" required placeholder="Укажите профессию" name="job" id="input-job"
-                name="input-job" class="popup__form-input">
+              <input type="text" minlength="2" maxlength="200" required placeholder="Укажите профессию" name="job"
+                id="input-job" name="input-job" class="popup__form-input">
               <span id="input-job-error" class="popup__form-input-error"></span>
             </label>
           </fieldset>
@@ -77,12 +76,13 @@
         <h2 class="popup__form-header">Новое место</h2>
         <fieldset class="popup__form-fieldset">
           <label class="popup__form-label">
-            <input type="text" minlength="2" maxlength="30" required placeholder="Название" name="place" id="input-place"
-              class="popup__form-input">
+            <input type="text" minlength="2" maxlength="30" required placeholder="Название" name="place"
+              id="input-place" class="popup__form-input">
             <span id="input-place-error" class="popup__form-input-error"></span>
           </label>
           <label class="popup__form-label">
-            <input type="url" required placeholder="Ссылка на картинку" name="link" id="input-link" class="popup__form-input">
+            <input type="url" required placeholder="Ссылка на картинку" name="link" id="input-link"
+              class="popup__form-input">
             <span id="input-link-error" class="popup__form-input-error"></span>
           </label>
         </fieldset>
@@ -95,7 +95,7 @@
     <div class="popup__img-container">
       <button type="button" class="close-btn"></button>
       <figure class="popup__figure">
-        <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg" alt=""
+        <img src="" alt=""
           class="popup__figure-image">
         <figcaption class="popup__figure-caption"></figcaption>
       </figure>
@@ -117,7 +117,6 @@
     </li>
   </template>
 
-  <script type="module" src="./pages/index.js"></script>
 </body>
 
 </html>
