@@ -1,32 +1,32 @@
-import './pages/index.css';
+import './index.css';
 
-import FormValidator from './components/FormValidator.js';
 import {
   profilePopupOpenButton,
-  popupProfile,
-  popupCard,
+  popupProfileSelector,
+  popupCardSelector,
   cardPopupOpenButton,
   formProfileElement,
   nameInput,
   jobInput,
   formCardElement,
-  profileName,
-  profileJob,
-  popupImage,
+  profileNameSelector,
+  profileJobSelector,
+  popupImageSelector,
   cardsContainer,
   validationConfig,
   initialCards
-} from './utils/constants.js';
-import Section from './components/Section.js';
-import Card from './components/Card.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import UserInfo from './components/UserInfo.js';
+} from '../utils/constants.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import Card from '../components/Card.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 
 const cardFormValidator = new FormValidator(validationConfig, formCardElement);
 const profileFormValidator = new FormValidator(validationConfig, formProfileElement);
 
-const popupImg = new PopupWithImage(popupImage);
+const popupImg = new PopupWithImage(popupImageSelector);
 
 const handleCardClick = (imageData) => {
   popupImg.open(imageData);
@@ -53,26 +53,25 @@ const defaultCardList = new Section({
 );
 
 const popupItem = new PopupWithForm(
-  popupCard,
+  popupCardSelector,
   {handleFormSubmit: (formData) => {
-    const card = createCard(
-      { data: { name: formData.place, link: formData.link }, handleOpenImagePopup: handleCardClick }, '.template');
+    const card = createCard({
+      data: formData,
+      handleOpenImagePopup: handleCardClick
+    },
+    '.template');
       defaultCardList.addItemPrepEnd(card);
       popupItem.close();
   }
 });
 
-const userInfo = new UserInfo({ name: profileName.textContent, job: profileJob.textContent });
+const userInfo = new UserInfo({ nameSelector: profileNameSelector, jobSelector: profileJobSelector });
 
 const popupUser = new PopupWithForm(
-  popupProfile,
+  popupProfileSelector,
   {
     handleFormSubmit: (formData) => {
-      const newUserInfo = userInfo.setUserInfo(
-        { name: formData.name, job: formData.job }
-      );
-      profileName.textContent = newUserInfo.name;
-      profileJob.textContent = newUserInfo.job;
+      userInfo.setUserInfo(formData);
       popupUser.close();
     }
   }
@@ -81,22 +80,22 @@ const popupUser = new PopupWithForm(
 // Открытие popupProfile с подстановкой значений, неактивным submit и очисткой ошибок
 const openProfilePopup = () => {
   profileFormValidator.clearErrors();
-  profileFormValidator.disableSubmitButton(popupProfile);
+  profileFormValidator.disableSubmitButton();
   fillProfileFormInputs();
   popupUser.open();
 };
 
 // Заполнение полей popupProfile при открытии
 const fillProfileFormInputs = () => {
-  const profileAtribute = userInfo.getUserInfo();
-  nameInput.value = profileAtribute.name;
-  jobInput.value = profileAtribute.job;
+  const {name, job} = userInfo.getUserInfo();
+  nameInput.value = name;
+  jobInput.value = job;
 };
 
 // Открытие popupCard с пустыми полями и неактивным submit, очистка полей, очистка ошибок
 const openPopupCard = () => {
   cardFormValidator.clearErrors();
-  cardFormValidator.disableSubmitButton(popupCard);
+  cardFormValidator.disableSubmitButton();
   popupItem.open();
 };
 

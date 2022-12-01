@@ -1,14 +1,14 @@
 export const profilePopupOpenButton = document.querySelector('.profile__edit-button');
-export const popupProfile = document.querySelector('#popupProfile');
-export const popupCard = document.querySelector('#popupCard');
+export const popupCardSelector = '#popupCard';
+export const popupProfileSelector = '#popupProfile';
+export const popupImageSelector = '#popupImage';
 export const cardPopupOpenButton = document.querySelector('.profile__add-button')
-export const formProfileElement = popupProfile.querySelector('#popupFormProfile');  
+export const formProfileElement = document.querySelector('#popupFormProfile');  
 export const nameInput = formProfileElement.querySelector('#input-name');
 export const jobInput = formProfileElement.querySelector('#input-job');
-export const formCardElement = popupCard.querySelector('#popupFormCard');
-export const profileName = document.querySelector('.profile__name');
-export const profileJob = document.querySelector('.profile__job');
-export const popupImage = document.querySelector('#popupImage');
+export const formCardElement = document.querySelector('#popupFormCard');
+export const profileNameSelector = '.profile__name';
+export const profileJobSelector = '.profile__job';
 export const cardsContainer = '.elements__list';
 export const validationConfig = {
   formSelector: '.popup__form',

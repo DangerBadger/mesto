@@ -4,10 +4,10 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector, {handleFormSubmit}) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-  }
+    this._inputList = Array.from(this._popupSelector.querySelectorAll('.popup__form-input')); // Раньше я всегда явно преобразовывал...
+  }        // массивоподобные объекты в массивы, но в группе меня уверяли что в этом теперь нет смысла и стал избегать этого по-возможности.
 
   _getInputValues() {
-    this._inputList = this._popupSelector.querySelectorAll('.popup__form-input');
     this._formValues = {};
 
     this._inputList.forEach(input => {

@@ -1,6 +1,6 @@
 export default class Popup {
   constructor(popupSelector) {
-    this._popupSelector = popupSelector;
+    this._popupSelector = document.querySelector(popupSelector);
   }
 
   // Функция закрытия popup на esc
@@ -23,11 +23,11 @@ export default class Popup {
   // Закрытие popup на оверлее
   _bindPopupsOverlayClickHandlers() {
     this._popupSelector.addEventListener('mousedown', (evt) => {
-      if (evt.target === evt.currentTarget) {
-        this.close();
-      };
-    });
-  };
+      if (evt.target === evt.currentTarget) {  // Реализация через || мне известна, но я умышленно разделил этот метод на 2...
+        this.close();                          // т.к. для закрытия по оверлею подходит mousedown, но для зыкрытия по крестику...
+      };                                       // лучше подойдёт click, так как это широкораспространённое поведение кнопки закрытия окон...
+    });                                        // для оверлея же click напротив не очень удобен, т.к. при большом попапе, пользователь может...
+  };                                           // нажать на лпкм на оверлее, а отпустить его на фотографии, и закрытия не произойдёт.
 
   // Закрытие popup на крестике
   _bindPopupsCloseButtonsClickHandlers() {

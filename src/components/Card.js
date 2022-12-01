@@ -6,11 +6,10 @@ export default class Card {
   }
 
   _getTemplate() {
-    const currentCard = document
+    return document
       .querySelector(this._templateSelector)
       .content.querySelector('.elements__item')
       .cloneNode(true);
-    return currentCard;
   }
 
   generateCard() {
