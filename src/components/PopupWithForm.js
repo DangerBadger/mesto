@@ -1,11 +1,11 @@
 import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, {handleFormSubmit}) {
+  constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-    this._inputList = Array.from(this._popupSelector.querySelectorAll('.popup__form-input')); // Раньше я всегда явно преобразовывал...
-  }        // массивоподобные объекты в массивы, но в группе меня уверяли что в этом теперь нет смысла и стал избегать этого по-возможности.
+    this._inputList = Array.from(this._popupSelector.querySelectorAll('.popup__form-input'));
+  }
 
   _getInputValues() {
     this._formValues = {};
@@ -17,6 +17,10 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
+  changeHandleFormSubmit(newHandleFormSubmit) {
+    this._handleFormSubmit = newHandleFormSubmit;
+  }
+
   setEventListeners() {
     super.setEventListeners();
 
@@ -24,7 +28,6 @@ export default class PopupWithForm extends Popup {
 
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-
       this._handleFormSubmit(this._getInputValues());
     });
   }

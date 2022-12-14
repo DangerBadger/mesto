@@ -1,9 +1,12 @@
 export default class Card {
-  constructor(settings, templateSelector, handleDeleteConfirm) {
+  constructor(settings, templateSelector, handleDeleteConfirm, handleCardLikeClick) {
     this._data = settings.data;
+    this._userId = settings.userId;
+    this._ownerId = this._data.owner._id;
     this._openCard = settings.handleOpenImagePopup;
     this._templateSelector = templateSelector;
     this._handleDeleteConfirm = handleDeleteConfirm;
+    this._handleCardLikeClick = handleCardLikeClick;
   }
 
   _getTemplate() {
@@ -13,13 +16,32 @@ export default class Card {
       .cloneNode(true);
   }
 
-  _countLikes() {
+  isLiked() {
+    const isLikedByUser = this._data.likes.find(user => user._id === this._userId)
+
+    return isLikedByUser
+  }
+
+  countLikes(actualLikes) {
+    this._data.likes = actualLikes
     const cardLikeCounter = this._card.querySelector('.elements__like-counter')
     cardLikeCounter.textContent = this._data.likes.length
+
+    if(this.isLiked()) {
+      this._elementLikeButton.classList.add('elements__like-button_active');
+    } else {
+      this._elementLikeButton.classList.remove('elements__like-button_active');
+    }
+  }
+
+  deleteCardLocal = () => {
+    this._card.remove();
+    this._card = null;
   }
 
   generateCard() {
     this._card = this._getTemplate();
+    this._deleteButton = this._card.querySelector('.elements__delete-btn');
     this._elementImg = this._card.querySelector('.elements__img');
     this._setEventListeners();
 
@@ -27,7 +49,11 @@ export default class Card {
     this._elementImg.alt = this._data.name;
     this._card.querySelector('.elements__caption').textContent = this._data.name;
 
-    this._countLikes();
+    this.countLikes(this._data.likes);
+
+    if(this._ownerId !== this._userId){
+      this._deleteButton.style.display = 'none';
+    }
 
     return this._card;
   }
@@ -36,9 +62,9 @@ export default class Card {
     this._elementLikeButton = this._card.querySelector('.elements__like-button');
 
     this._elementLikeButton.addEventListener('click', () => {
-      this._handleCardLike();
+      this._handleCardLikeClick(this._data._id);
     });
-    this._card.querySelector('.elements__delete-btn').addEventListener('click', () => {
+    this._deleteButton.addEventListener('click', () => {
       this._handleDeleteConfirm(this._data._id);
     });
 
@@ -47,15 +73,6 @@ export default class Card {
     });
     
   }
-
-  _handleCardLike() {
-    this._elementLikeButton.classList.toggle('elements__like-button_active');
-  }
-
-  // _handleDeleteCard = () => {
-  //   this._card.remove();
-  //   this._card = null;
-  // }
 
   _handleImageClick() {
     this._openCard(this._data);
