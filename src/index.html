@@ -101,6 +101,16 @@
       </figure>
     </div>
   </div>
+  
+  <div class="popup" id="popupDeleteConfirm">
+    <form class="popup__form popup__form_type_confirm" id="popupFormDeleteConfirm" name="confirmation" novalidate>
+      <div class="popup__form-container">
+        <button type="button" class="close-btn"></button>
+        <h2 class="popup__form-header popup__form-header_type_confirm">Вы уверены?</h2>
+        <button type="submit" class="popup__submit-btn popup__submit-btn_type_confirm" id="confirmDeleteBtn">Да</button>
+      </div>
+    </form>
+  </div>
 
   <template class="template">
     <li class="elements__item">
@@ -112,6 +122,7 @@
         <div class="elements__text-container">
           <p class="elements__caption"></p>
           <button class="elements__like-button"></button>
+          <span class="elements__like-counter"></span>
         </div>
       </div>
     </li>

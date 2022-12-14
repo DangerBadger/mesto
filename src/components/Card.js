@@ -1,8 +1,9 @@
 export default class Card {
-  constructor(settings, templateSelector) {
+  constructor(settings, templateSelector, handleDeleteConfirm) {
     this._data = settings.data;
     this._openCard = settings.handleOpenImagePopup;
     this._templateSelector = templateSelector;
+    this._handleDeleteConfirm = handleDeleteConfirm;
   }
 
   _getTemplate() {
@@ -10,6 +11,11 @@ export default class Card {
       .querySelector(this._templateSelector)
       .content.querySelector('.elements__item')
       .cloneNode(true);
+  }
+
+  _countLikes() {
+    const cardLikeCounter = this._card.querySelector('.elements__like-counter')
+    cardLikeCounter.textContent = this._data.likes.length
   }
 
   generateCard() {
@@ -21,6 +27,8 @@ export default class Card {
     this._elementImg.alt = this._data.name;
     this._card.querySelector('.elements__caption').textContent = this._data.name;
 
+    this._countLikes();
+
     return this._card;
   }
 
@@ -31,7 +39,7 @@ export default class Card {
       this._handleCardLike();
     });
     this._card.querySelector('.elements__delete-btn').addEventListener('click', () => {
-      this._handleDeleteCard();
+      this._handleDeleteConfirm(this._data._id);
     });
 
     this._card.querySelector('.elements__img-button').addEventListener('click', () => {
@@ -44,10 +52,10 @@ export default class Card {
     this._elementLikeButton.classList.toggle('elements__like-button_active');
   }
 
-  _handleDeleteCard = () => {
-    this._card.remove();
-    this._card = null;
-  }
+  // _handleDeleteCard = () => {
+  //   this._card.remove();
+  //   this._card = null;
+  // }
 
   _handleImageClick() {
     this._openCard(this._data);
