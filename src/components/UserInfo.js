@@ -6,21 +6,15 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    this._name = this._nameInput.textContent;
-    this._job = this._jobInput.textContent;
-    return {name: this._name, job: this._job};
+    const name = this._nameInput.textContent;
+    const job = this._jobInput.textContent;
+    return {name, job};
   }
     
 
-  setUserInfo(info) {
-    if(info.name) {
-      this._nameInput.textContent = info.name;
-    }
-    if(info.about) {
-      this._jobInput.textContent = info.about;
-    } 
-    if(info.avatar){
-      this._avatar.src = info.avatar;
-    }
+  setUserInfo({ name, about, avatar}) {
+    this._nameInput.textContent = name;
+    this._jobInput.textContent = about;
+    this._avatar.src = avatar;
   }
 };

@@ -5,11 +5,6 @@ import {
   popupProfileSelector,
   popupCardSelector,
   cardPopupOpenButton,
-  formAvatarElement,
-  formProfileElement,
-  nameInput,
-  jobInput,
-  formCardElement,
   profileNameSelector,
   profileJobSelector,
   profileAvatarSelector,
@@ -25,11 +20,28 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
+const userInfo = new UserInfo({
+  nameSelector: profileNameSelector,
+  jobSelector: profileJobSelector,
+  avatarSelector: profileAvatarSelector
+});
+
 let userId = undefined;
 
-const cardFormValidator = new FormValidator(validationConfig, formCardElement);
-const profileFormValidator = new FormValidator(validationConfig, formProfileElement);
-const avatarFormValodator = new FormValidator(validationConfig, formAvatarElement)
+const formValidators = {}
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, config)
+    const formName = formElement.getAttribute('name')
+
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+
+enableValidation(validationConfig);
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-55',
@@ -39,30 +51,29 @@ const api = new Api({
   }
 });
 
-api.getProfileInfo()
-  .then((profileInfo) => {
-    userInfo.setUserInfo(profileInfo)
-    userId = profileInfo._id
-  });
-
-api.getInitialCards()
-  .then((cardsArray) => {
-    cardsArray.forEach(cardItem => {
-      const card = createCard(
-        {
-          data: cardItem,
-          userId,
-          handleOpenImagePopup: handleCardClick
-        },
-        '.template');
-      defaultCardList.addItemAppEnd(card)
+  Promise.all([api.getInitialCards(), api.getProfileInfo()])
+    .then(([cardsArray, userData]) => {
+      userId = userData._id;
+      userInfo.setUserInfo(userData)
+      
+      cardsArray.forEach(cardItem => {
+        const card = createCard(
+          {
+            data: cardItem,
+            userId,
+            handleOpenImagePopup: handleCardClick
+          },
+          '.template');
+        defaultCardList.addItemAppEnd(card)
+      });
+    })
+    .catch(err => {
+      console.log(err)
     });
-  });
 
-
-  const handleCardClick = (imageData) => {
-    popupImg.open(imageData);
-  }
+const handleCardClick = (imageData) => {
+  popupImg.open(imageData);
+}
 
 const createCard = (cardData, template) => {
   const card = new Card(
@@ -71,11 +82,14 @@ const createCard = (cardData, template) => {
     (cardId) => {
       popupConfirm.open()
       popupConfirm.changeHandleFormSubmit(() => {
-        popupConfirm.renderLoading(true)
+        popupConfirm.renderLoading(true, 'Удаление...')
         api.deleteCardOnline(cardId)
           .then(() => {
             card.deleteCardLocal()
             popupConfirm.close()
+          })
+          .catch((err) => {
+            console.log(err)
           })
           .finally(() => {
             popupConfirm.renderLoading(false)
@@ -83,16 +97,22 @@ const createCard = (cardData, template) => {
       })
     },
     (cardId) => {
-      if(card.isLiked()) {
+      if (card.isLiked()) {
         api.deleteLike(cardId)
-        .then((res) => {
-          card.countLikes(res.likes)
-        })
+          .then((res) => {
+            card.countLikes(res.likes)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       } else {
         api.addLike(cardId)
-        .then((res) => {
-          card.countLikes(res.likes)
-        })
+          .then((res) => {
+            card.countLikes(res.likes)
+          })
+          .catch((err) => {
+            console.log(err)
+          });
       }
     }
   );
@@ -122,11 +142,14 @@ const popupAvatar = new PopupWithForm(
   '#popupAvatar',
 
   function handleFormSubmit(formData) {
-    popupAvatar.renderLoading(true)
+    popupAvatar.renderLoading(true, 'Сохранение...')
     api.changeAvatar(formData)
       .then((avatar) => {
         userInfo.setUserInfo(avatar);
         popupAvatar.close()
+      })
+      .catch((err) => {
+        console.log(err)
       })
       .finally(() => {
         popupAvatar.renderLoading(false)
@@ -138,7 +161,7 @@ const popupItem = new PopupWithForm(
   popupCardSelector,
 
   function handleFormSubmit(formData) {
-    popupItem.renderLoading(true)
+    popupItem.renderLoading(true, 'Создание...')
     api.addNewCard(formData)
       .then((data) => {
         const card = createCard(
@@ -151,6 +174,9 @@ const popupItem = new PopupWithForm(
         defaultCardList.addItemPrepEnd(card)
         popupItem.close()
       })
+      .catch((err) => {
+        console.log(err)
+      })
       .finally(() => {
         popupItem.renderLoading(false)
       })
@@ -161,11 +187,14 @@ const popupUser = new PopupWithForm(
   popupProfileSelector,
 
   function handleFormSubmit(formData) {
-    popupUser.renderLoading(true)
+    popupUser.renderLoading(true, 'Сохранение...')
     api.editProfile(formData)
       .then((profileInfo) => {
         userInfo.setUserInfo(profileInfo)
         popupUser.close()
+      })
+      .catch((err) => {
+        console.log(err)
       })
       .finally(() => {
         popupUser.renderLoading(false)
@@ -173,37 +202,25 @@ const popupUser = new PopupWithForm(
   }
 );
 
-const userInfo = new UserInfo({
-  nameSelector: profileNameSelector,
-  jobSelector: profileJobSelector,
-  avatarSelector: profileAvatarSelector
-});
-
 // Открытие popupProfile с подстановкой значений, неактивным submit и очисткой ошибок
 const openProfilePopup = () => {
-  profileFormValidator.clearErrors();
-  profileFormValidator.disableSubmitButton();
-  fillProfileFormInputs();
+  formValidators['profile'].clearErrors()
+  formValidators['profile'].disableSubmitButton()
+  const inpitValues = userInfo.getUserInfo();
+  popupUser.setInputValues(inpitValues);
   popupUser.open();
-};
-
-// Заполнение полей popupProfile при открытии
-const fillProfileFormInputs = () => {
-  const { name, job } = userInfo.getUserInfo();
-  nameInput.value = name;
-  jobInput.value = job;
 };
 
 // Открытие popupCard с пустыми полями и неактивным submit, очистка полей, очистка ошибок
 const openPopupCard = () => {
-  cardFormValidator.clearErrors();
-  cardFormValidator.disableSubmitButton();
+  formValidators['card'].clearErrors()
+  formValidators['card'].disableSubmitButton()
   popupItem.open();
 };
 
 const openAvatarPopup = () => {
-  avatarFormValodator.clearErrors();
-  avatarFormValodator.disableSubmitButton();
+  formValidators['avatar'].clearErrors()
+  formValidators['avatar'].disableSubmitButton()
   popupAvatar.open();
 }
 
@@ -221,7 +238,4 @@ popupUser.setEventListeners();
 popupItem.setEventListeners();
 popupConfirm.setEventListeners();
 popupAvatar.setEventListeners();
-cardFormValidator.enableValidation();
-profileFormValidator.enableValidation();
-avatarFormValodator.enableValidation();
 defaultCardList.renderItems();

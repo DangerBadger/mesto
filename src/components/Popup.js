@@ -1,6 +1,6 @@
 export default class Popup {
   constructor(popupSelector) {
-    this._popupSelector = document.querySelector(popupSelector);
+    this._popup = document.querySelector(popupSelector);
   }
 
   // Функция закрытия popup на esc
@@ -22,7 +22,7 @@ export default class Popup {
 
   // Закрытие popup на оверлее
   _bindPopupsOverlayClickHandlers() {
-    this._popupSelector.addEventListener('mousedown', (evt) => {
+    this._popup.addEventListener('mousedown', (evt) => {
       if (evt.target === evt.currentTarget) {
         this.close();
       };
@@ -31,7 +31,7 @@ export default class Popup {
 
   // Закрытие popup на крестике
   _bindPopupsCloseButtonsClickHandlers() {
-    this._popupSelector.addEventListener('click', (evt) => {
+    this._popup.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('close-btn')) {
         this.close();
       };
@@ -44,12 +44,12 @@ export default class Popup {
   };
 
   open() {
-    this._popupSelector.classList.add('popup_opened');
+    this._popup.classList.add('popup_opened');
     this._setKeyHandler();
   };
 
   close() {
-    this._popupSelector.classList.remove('popup_opened');
+    this._popup.classList.remove('popup_opened');
     this._removeKeyHandler();
   };
 };
