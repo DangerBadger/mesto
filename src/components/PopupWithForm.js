@@ -25,11 +25,19 @@ export default class PopupWithForm extends Popup {
 
   renderLoading(isLoading) {
     if(isLoading) {
-      this._submitButtonText === 'Сохранить' ?
-        this._submitButton.textContent = 'Сохранение...' :
-        this._submitButton.textContent = 'Создание...'
+      switch(this._submitButtonText) {
+        case 'Сохранить':
+          this._submitButton.textContent = 'Сохранение...';
+          break;
+        case 'Создать':
+          this._submitButton.textContent = 'Создание...';
+          break;
+        case 'Да':
+          this._submitButton.textContent = 'Удаление...';
+          break;
+      }
     } else {
-      this._submitButton.textContent = this._submitButtonText
+      this._submitButton.textContent = this._submitButtonText;
     }
   }
 

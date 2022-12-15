@@ -71,10 +71,14 @@ const createCard = (cardData, template) => {
     (cardId) => {
       popupConfirm.open()
       popupConfirm.changeHandleFormSubmit(() => {
+        popupConfirm.renderLoading(true)
         api.deleteCardOnline(cardId)
           .then(() => {
             card.deleteCardLocal()
             popupConfirm.close()
+          })
+          .finally(() => {
+            popupConfirm.renderLoading(false)
           })
       })
     },
