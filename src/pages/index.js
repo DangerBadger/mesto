@@ -56,16 +56,7 @@ const api = new Api({
       userId = userData._id;
       userInfo.setUserInfo(userData)
       
-      cardsArray.forEach(cardItem => {
-        const card = createCard(
-          {
-            data: cardItem,
-            userId,
-            handleOpenImagePopup: handleCardClick
-          },
-          '.template');
-        defaultCardList.addItemAppEnd(card)
-      });
+      defaultCardList.renderItems(cardsArray)
     })
     .catch(err => {
       console.log(err)
@@ -125,6 +116,7 @@ const defaultCardList = new Section({
     const card = createCard(
       {
         data: cardItem,
+        userId,
         handleOpenImagePopup: handleCardClick
       },
       '.template');
@@ -238,4 +230,3 @@ popupUser.setEventListeners();
 popupItem.setEventListeners();
 popupConfirm.setEventListeners();
 popupAvatar.setEventListeners();
-defaultCardList.renderItems();
