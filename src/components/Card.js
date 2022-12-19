@@ -24,7 +24,6 @@ export default class Card {
 
   countLikes(actualLikes) {
     this._data.likes = actualLikes
-    // const cardLikeCounter = this._card.querySelector('.elements__like-counter')
     this._cardLikeCounter.textContent = this._data.likes.length
 
     if(this.isLiked()) {
