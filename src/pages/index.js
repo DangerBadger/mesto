@@ -204,7 +204,6 @@ const openProfilePopup = () => {
   popupUser.open();
 };
 
-// Открытие popupCard с пустыми полями и неактивным submit, очистка полей, очистка ошибок
 const openPopupCard = () => {
   formValidators['card'].clearErrors()
   formValidators['card'].disableSubmitButton()
