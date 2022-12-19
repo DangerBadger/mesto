@@ -20,14 +20,6 @@ export default class Api {
         method: "GET",
         headers: this._headers
       })
-    // return fetch(`${this._baseUrl}/users/me`, {
-    // method: "GET",
-    // headers: this._headers
-    // })
-    // .then(this._checkResponse)
-    // .catch((err) => {
-    //   console.log(err)
-    // })
   };
   
 
