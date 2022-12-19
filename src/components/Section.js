@@ -16,6 +16,6 @@ export default class Section {
   }
 
   addItemPrepEnd(element) {
-    this._container.prepend(element); // Не могу осилить логику, возможно вернусь к реализации этого "Можно лучше" позже
+    this._container.prepend(element);
   }
 };
