@@ -112,10 +112,10 @@ const createCard = (cardData, template) => {
 
 const defaultCardList = new Section({
   items: [],
-  renderer: (cardItem) => {
+  renderer: (data) => {
     const card = createCard(
       {
-        data: cardItem,
+        data,
         userId,
         handleOpenImagePopup: handleCardClick
       },
@@ -156,14 +156,15 @@ const popupItem = new PopupWithForm(
     popupItem.renderLoading(true, 'Создание...')
     api.addNewCard(formData)
       .then((data) => {
-        const card = createCard(
-          {
-            data,
-            userId,
-            handleOpenImagePopup: handleCardClick
-          },
-          '.template')
-        defaultCardList.addItemPrepEnd(card)
+        defaultCardList.renderCard(data)
+        // const card = createCard(
+        //   {
+        //     data,
+        //     userId,
+        //     handleOpenImagePopup: handleCardClick
+        //   },
+        //   '.template')
+        // defaultCardList.addItemPrepEnd(card)
         popupItem.close()
       })
       .catch((err) => {
