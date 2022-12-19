@@ -156,15 +156,14 @@ const popupItem = new PopupWithForm(
     popupItem.renderLoading(true, 'Создание...')
     api.addNewCard(formData)
       .then((data) => {
-        defaultCardList.renderCard(data)
-        // const card = createCard(
-        //   {
-        //     data,
-        //     userId,
-        //     handleOpenImagePopup: handleCardClick
-        //   },
-        //   '.template')
-        // defaultCardList.addItemPrepEnd(card)
+        const card = createCard(
+          {
+            data,
+            userId,
+            handleOpenImagePopup: handleCardClick
+          },
+          '.template')
+        defaultCardList.addItemPrepEnd(card)
         popupItem.close()
       })
       .catch((err) => {

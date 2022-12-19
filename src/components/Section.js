@@ -11,15 +11,6 @@ export default class Section {
     });
   }
 
-  renderCard(item) { 
-    this._renderer(item);
-}
-
-  addItem(item) {
-    const card = this._renderer(item)
-    this._container.prepend(card);
-  }
-
   addItemAppEnd(element) {
     this._container.append(element);
   }
